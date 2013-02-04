@@ -28,8 +28,6 @@ namespace SimpleBoard.Service
                                    taskRepository.Update(updatedTask);
                                    return HttpStatusCode.OK;
                                };
-
-
         }
     }
 }

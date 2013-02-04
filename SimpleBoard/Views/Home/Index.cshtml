@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div id="container">
+    <div id="board">
+        <div id="todo" class="board-col" >
+            <h3>ToDo</h3>
+            <div data-bind="foreach: todoTasks">
+                <div class="item"><span data-bind="text: Description"></span></div>
+            </div>
+        </div>
+        <div id="doing" class="board-col">
+            <h3>Doing</h3>
+            <div data-bind="foreach: doingTasks">
+                <div class="item"><span data-bind="text: description"></span></div>
+            </div>
+        </div>
+        <div id="done" class="board-col">
+            <h3>Done</h3>
+            <div data-bind="foreach: doneTasks">
+                <div class="item"><span data-bind="text: description"></span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/App/taskViewModel.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var viewModel;
+        $(function () {
+            viewModel = new taskViewModel();
+            ko.applyBindings(viewModel);
+
+            viewModel.load();
+
+            $(".item").draggable({ revert: "invalid" });
+            $(".board-col").droppable({
+                hoverClass: "column-state-hover",
+                drop: function (event, ui) {
+                }
+            });
+        });
+    </script>
+}

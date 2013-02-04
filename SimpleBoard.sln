@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBoard", "SimpleBoard\SimpleBoard.csproj", "{CEB088F7-3DB0-4E38-BAAC-EDF2E55505C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBoard.Service", "SimpleBoard.Service\SimpleBoard.Service.csproj", "{EF8E64DE-A040-463D-9BB3-C2191CFA6857}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBoard.Service.Tests", "SimpleBoard.Service.Tests\SimpleBoard.Service.Tests.csproj", "{22C873DF-4FEC-44A3-ABDA-B605195126E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEB088F7-3DB0-4E38-BAAC-EDF2E55505C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEB088F7-3DB0-4E38-BAAC-EDF2E55505C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEB088F7-3DB0-4E38-BAAC-EDF2E55505C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEB088F7-3DB0-4E38-BAAC-EDF2E55505C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF8E64DE-A040-463D-9BB3-C2191CFA6857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF8E64DE-A040-463D-9BB3-C2191CFA6857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF8E64DE-A040-463D-9BB3-C2191CFA6857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF8E64DE-A040-463D-9BB3-C2191CFA6857}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22C873DF-4FEC-44A3-ABDA-B605195126E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22C873DF-4FEC-44A3-ABDA-B605195126E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22C873DF-4FEC-44A3-ABDA-B605195126E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22C873DF-4FEC-44A3-ABDA-B605195126E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

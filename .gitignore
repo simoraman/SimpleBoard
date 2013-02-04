@@ -27,3 +27,5 @@ obj/
 [Rr]elease*/
 
 packages/
+App_Data/
+_ReSharper*/

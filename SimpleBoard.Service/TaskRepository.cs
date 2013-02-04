@@ -7,7 +7,15 @@ using Raven.Client;
 
 namespace SimpleBoard.Service
 {
-    public class TaskRepository
+    public interface ITaskRepository
+    {
+        IEnumerable<Task> Find();
+        void Save(Task task);
+        IEnumerable<Task> FindByStatus(string status);
+        void Update(Task updatedTask);
+    }
+
+    public class TaskRepository : ITaskRepository
     {
         private IDocumentSession session;
 
@@ -34,6 +42,15 @@ namespace SimpleBoard.Service
                           where task.Status == status
                           select task;
             return results.ToList();
+        }
+
+        public void Update(Task updatedTask)
+        {
+            //var result = from task in session.Query<Task>()
+            //             where task.Id == updatedTask.Id
+            //             select task;
+            session.Store(updatedTask);
+            session.SaveChanges();
         }
     }
 }

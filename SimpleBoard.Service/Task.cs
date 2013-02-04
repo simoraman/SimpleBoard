@@ -11,7 +11,8 @@ namespace SimpleBoard.Service
 
         public string Status
         {
-            get;set;
+            get;
+            set;
         }
         public string Description { get; set; }
     }

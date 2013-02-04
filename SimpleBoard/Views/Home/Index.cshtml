@@ -7,20 +7,20 @@
     <div id="board">
         <div id="todo" class="board-col" >
             <h3>ToDo</h3>
-            <div data-bind="foreach: todoTasks">
+            <div data-bind="foreach: {data:todoTasks, afterRender:makeDraggable}">
                 <div class="item"><span data-bind="text: Description"></span></div>
             </div>
         </div>
         <div id="doing" class="board-col">
             <h3>Doing</h3>
-            <div data-bind="foreach: doingTasks">
-                <div class="item"><span data-bind="text: description"></span></div>
+            <div data-bind="foreach: {data:doingTasks, afterRender:makeDraggable}">
+                <div class="item"><span data-bind="text: Description"></span></div>
             </div>
         </div>
         <div id="done" class="board-col">
             <h3>Done</h3>
-            <div data-bind="foreach: doneTasks">
-                <div class="item"><span data-bind="text: description"></span></div>
+            <div data-bind="foreach: {data:doneTasks, afterRender:makeDraggable}">
+                <div class="item"><span data-bind="text: Description"></span></div>
             </div>
         </div>
     </div>
@@ -36,12 +36,17 @@
 
             viewModel.load();
 
-            $(".item").draggable({ revert: "invalid" });
             $(".board-col").droppable({
                 hoverClass: "column-state-hover",
                 drop: function (event, ui) {
+                    
+                    alert(ui.draggable.text()+$(this).find("h3").text());
                 }
             });
         });
+
+        function makeDraggable() {
+            $('.item').draggable({ revert: "invalid" });
+        }
     </script>
 }

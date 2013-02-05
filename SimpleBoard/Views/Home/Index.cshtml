@@ -8,7 +8,12 @@
         <div id="todo" class="board-col" >
             <h3>ToDo</h3>
             <div data-bind="foreach: {data:todoTasks, afterRender:makeDraggable}">
-                <div class="item"><span data-bind="text: Description"></span></div>
+                <div class="item">
+                    <span data-bind="text:Id"></span>
+                    <br />
+                    <span data-bind="text: Description"></span>
+                    <input type="hidden" data-bind="text: Status" /> 
+                </div>
             </div>
         </div>
         <div id="doing" class="board-col">
@@ -40,7 +45,7 @@
                 hoverClass: "column-state-hover",
                 drop: function (event, ui) {
                     
-                    alert(ui.draggable.text()+$(this).find("h3").text());
+                    alert(ui.draggable.text());
                 }
             });
         });

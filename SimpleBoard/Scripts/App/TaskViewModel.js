@@ -26,4 +26,20 @@
             }
         });
     }
+
+    self.updateItem = function (formData) {
+        var putData = ko.mapping.toJSON(formData)
+        $.ajax({
+            url: self.url + '/tasks/' + formData.Id,
+            contentType: 'application/json',
+            type: 'PUT',
+            data: JSON.stringify(putData),
+            success: function (result) {
+                alert(result);
+            },
+            error: function (request, textStatus, errorThrown) {
+                alert(textStatus);
+            }
+        });
+    }
 };

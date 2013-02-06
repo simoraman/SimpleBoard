@@ -1,0 +1,11 @@
+﻿<form class="item" data-bind="submit: function(form){viewModel.updateItem($data)}">
+    <div class="card">
+        <span data-bind="text:Id" class="taskId"></span>
+        <hr />
+        <span data-bind="text: Description"></span>
+        <input type="hidden" data-bind="value: Status" /> 
+        <br />
+        <div class="controls">
+        </div>
+    </div>
+</form>

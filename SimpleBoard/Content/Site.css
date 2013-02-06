@@ -11,8 +11,8 @@ header, footer, nav, section {
 
 .board-col
 {
-    border:2px solid black;
-    margin:5px;
+    border-right:2px solid black;
+    border-top:2px solid black;
     float:left;
     height:400px;
     width:300px;
@@ -22,17 +22,25 @@ header, footer, nav, section {
 {
     width:950px;    
 }
+#board h3
+{
+    padding:5px;
+    border-bottom:2px solid black;
+}
 #container
 {
    
 }
-.item
+.card
 {
     border:1px solid black;
     margin:5px;
     padding:3px;
-    width:50px;
-    }
+    width:150px;
+    min-height:100px;
+    background-color:#FCF0AD;
+}
+
 .column-state-hover
 {
     border:2px solid green;

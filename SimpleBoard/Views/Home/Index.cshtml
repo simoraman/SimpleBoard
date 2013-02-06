@@ -2,30 +2,25 @@
     ViewBag.Title = "SimpleBoard";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 <div id="container">
     <div id="board">
         <div id="todo" class="board-col" >
             <h3>ToDo</h3>
             <div data-bind="foreach: {data:todoTasks, afterRender:makeDraggable}">
-                <form class="item" data-bind="submit: function(form){viewModel.updateItem($data)}">
-                    <span data-bind="text:Id"></span>
-                    <br />
-                    <span data-bind="text: Description"></span>
-                    <input type="hidden" data-bind="text: Status" /> 
-                </form>
+                @Html.Partial("_Card")
             </div>
         </div>
         <div id="doing" class="board-col">
             <h3>Doing</h3>
             <div data-bind="foreach: {data:doingTasks, afterRender:makeDraggable}">
-                <div class="item"><span data-bind="text: Description"></span></div>
+                @Html.Partial("_Card")
             </div>
         </div>
         <div id="done" class="board-col">
             <h3>Done</h3>
             <div data-bind="foreach: {data:doneTasks, afterRender:makeDraggable}">
-                <div class="item"><span data-bind="text: Description"></span></div>
+                @Html.Partial("_Card")
             </div>
         </div>
     </div>
@@ -45,7 +40,7 @@
                 hoverClass: "column-state-hover",
                 drop: function (event, ui) {
                     
-                    ui.draggable.children('input').val(this.id);
+                    ui.draggable.children('input').val(this.id).change();
                     ui.draggable.submit();
 
                 }

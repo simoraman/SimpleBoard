@@ -40,6 +40,18 @@ namespace SimpleBoard.Service.Tests
             Assert.That(result.Any(p => p.Description == "kuvaus"));
         }
         [Test]
+        public void DeleteTask()
+        {
+            Task task = new Task { Description = "kuvaus" };
+            taskRepository.Save(task);
+
+            IEnumerable<Task> result = taskRepository.Find();
+
+            taskRepository.Delete(result.First().Id);
+            result = taskRepository.Find();
+            Assert.That(result, Is.Empty);
+        }
+        [Test]
         public void GetTasksByStatus()
         {
             Task task = new Task { Description = "kuvaus", Status="ToDo" };

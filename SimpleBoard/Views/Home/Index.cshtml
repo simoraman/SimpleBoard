@@ -39,10 +39,8 @@
             $(".board-col").droppable({
                 hoverClass: "column-state-hover",
                 drop: function (event, ui) {
-                    
                     ui.draggable.children('input').val(this.id).change();
                     ui.draggable.submit();
-
                 }
             });
         });

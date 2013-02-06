@@ -12,19 +12,19 @@ namespace SimpleBoard.Service.Tests
     public class TaskModuleTests
     {
         private Mock<ITaskRepository> taskRepoMock;
-
+        Browser browser;
         [SetUp]
         public void Setup()
         {
             taskRepoMock = new Mock<ITaskRepository>();
-            
+            browser = new Browser((c) => c.Module<TaskModule>().Dependency<ITaskRepository>(taskRepoMock.Object));
+
         }
         [Test]
         public void GetShouldReturnTasks()
         {
             taskRepoMock.Setup(x => x.Find()).Returns(new List<Task> {new Task {Id = 1, Description = "taski"}});
-            var browser = new Browser((c) => c.Module<TaskModule>().Dependency<ITaskRepository>(taskRepoMock.Object));
-
+            
             BrowserResponse response = browser.Get("/tasks");
 
             JArray jsonArray = JArray.Parse(response.Body.AsString());
@@ -39,7 +39,6 @@ namespace SimpleBoard.Service.Tests
             var taskList = new List<Task>();
             taskList.Add(new Task {Id = 1, Description = "todo", Status = "ToDo"});
             taskRepoMock.Setup(x => x.FindByStatus("todo")).Returns(taskList);
-            var browser = new Browser(c => c.Module<TaskModule>().Dependency<ITaskRepository>(taskRepoMock.Object));
 
             var response=browser.Get("/tasks/status/todo");
 
@@ -51,8 +50,6 @@ namespace SimpleBoard.Service.Tests
         public void CanPostNewTasks()
         {
             var task = new Task {Description = "todo", Status = "ToDo"};
-
-            var browser = new Browser(c => c.Module<TaskModule>().Dependency<ITaskRepository>(taskRepoMock.Object));
 
             var response = browser.Post("/tasks/", with =>
                                                        {
@@ -69,13 +66,18 @@ namespace SimpleBoard.Service.Tests
         public void CanPutUpdatedTasks()
         {
             var task = new Task { Id = 1, Description = "todo", Status = "Done" };
-            var browser = new Browser(c => c.Module<TaskModule>().Dependency<ITaskRepository>(taskRepoMock.Object));
             var response = browser.Put("/tasks/"+task.Id, with =>
             {
                 with.Body(JsonConvert.SerializeObject(task));
                 with.Header("content-type", "application/json");
             });
             taskRepoMock.Verify(x => x.Update(It.Is<Task>(t => t.Status == "Done")));
+        }
+        [Test]
+        public void CanDeleteTask()
+        {
+            var response = browser.Delete("/tasks/" + 1);
+            taskRepoMock.Verify(x => x.Delete(1));
         }
 
     }

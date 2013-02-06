@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Raven.Client.Embedded;
 using Raven.Client;
+using Raven.Abstractions.Commands;
 
 namespace SimpleBoard.Service
 {
@@ -13,6 +14,7 @@ namespace SimpleBoard.Service
         void Save(Task task);
         IEnumerable<Task> FindByStatus(string status);
         void Update(Task updatedTask);
+        void Delete(int taskId);
     }
 
     public class TaskRepository : ITaskRepository
@@ -50,6 +52,12 @@ namespace SimpleBoard.Service
             //             where task.Id == updatedTask.Id
             //             select task;
             session.Store(updatedTask);
+            session.SaveChanges();
+        }
+
+        public void Delete(int taskId)
+        {
+            session.Advanced.Defer(new DeleteCommandData { Key = "tasks/" + taskId });
             session.SaveChanges();
         }
     }

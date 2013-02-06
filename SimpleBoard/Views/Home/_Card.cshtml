@@ -5,7 +5,10 @@
         <span data-bind="text: Description"></span>
         <input type="hidden" data-bind="value: Status" /> 
         <br />
-        <div class="controls">
+        <div class="card-controls">
+            <a class="card-control-button" href="#" data-bind="click: $parent.Delete">Delete</a>
+            
+            <a class="card-control-button" href="#" data-bind="click: $parent.Edit">Edit</a>
         </div>
     </div>
 </form>

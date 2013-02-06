@@ -40,10 +40,21 @@ header, footer, nav, section {
     min-height:100px;
     background-color:#FCF0AD;
 }
-
+.card-controls
+{
+    position: absolute;
+    bottom: 0;
+    width:150px;
+}
+.card-control-button
+{
+    float:right;
+    margin-right:5px;
+}
 .column-state-hover
 {
     border:2px solid green;
+}
 
 /* Styles for basic forms
 -----------------------------------------------------------*/

@@ -14,6 +14,7 @@
     }
     
     loadByStatus = function (status, list) {
+
         $.ajax({
             url: self.url + "/tasks/status/"+status,
             dataType: 'json',
@@ -38,5 +39,19 @@
                 alert(textStatus);
             }
         });
+    }
+    self.Delete = function (data) {
+        self.doingTasks.remove(data);
+        //        $.ajax({
+        //            url: self.url + '/tasks/' + data.Id,
+        //            contentType: 'application/json',
+        //            type: 'DELETE',
+        //            success: function () {
+        //                self.load();
+        //            },
+        //            error: function (request, textStatus, errorThrown) {
+        //                alert(textStatus);
+        //            }
+        //        });
     }
 };

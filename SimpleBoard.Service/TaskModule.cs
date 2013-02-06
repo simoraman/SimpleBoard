@@ -28,6 +28,12 @@ namespace SimpleBoard.Service
                                    taskRepository.Update(updatedTask);
                                    return HttpStatusCode.OK;
                                };
+
+            Delete["/{Id}"] = param =>
+                                {
+                                    taskRepository.Delete(param.Id);
+                                    return HttpStatusCode.OK;
+                                };
         }
     }
 }

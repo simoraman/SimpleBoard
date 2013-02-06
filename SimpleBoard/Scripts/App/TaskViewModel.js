@@ -5,7 +5,7 @@
     self.doingTasks = ko.observableArray([]);
     self.doneTasks = ko.observableArray([]);
 
-    self.url = "http://localhost:11188";
+    self.url = "http://localhost:11188/api";
 
     self.load = function () {
         loadByStatus("ToDo", self.todoTasks);
@@ -16,7 +16,7 @@
     loadByStatus = function (status, list) {
         $.ajax({
             url: self.url + "/tasks/status/"+status,
-            dataType: 'jsonp',
+            dataType: 'json',
             success: function (result) {
                 ko.utils.arrayPushAll(list, result);
                 list.valueHasMutated();
@@ -33,10 +33,7 @@
             url: self.url + '/tasks/' + formData.Id,
             contentType: 'application/json',
             type: 'PUT',
-            data: JSON.stringify(putData),
-            success: function (result) {
-                alert(result);
-            },
+            data: putData,
             error: function (request, textStatus, errorThrown) {
                 alert(textStatus);
             }

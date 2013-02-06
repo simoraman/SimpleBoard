@@ -44,6 +44,7 @@
             $(".board-col").droppable({
                 hoverClass: "column-state-hover",
                 drop: function (event, ui) {
+//                    alert(this.id);
                     ui.draggable.submit();
                 }
             });

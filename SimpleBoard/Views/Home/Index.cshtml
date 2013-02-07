@@ -5,22 +5,28 @@
 <h2>@ViewBag.Title</h2>
 <div id="container">
     <div id="board">
-        <div id="todo" class="board-col" >
+        <div id="ToDo" class="board-col" >
             <h3>ToDo</h3>
-            <div data-bind="foreach: {data:todoTasks, afterRender:makeDraggable}">
+            <div data-bind="foreach: {data:tasks, afterRender:makeDraggable}">
+                <!-- ko if: $data.Status.toUpperCase()==='ToDo'.toUpperCase() -->
                 @Html.Partial("_Card")
+                <!-- /ko -->
             </div>
         </div>
-        <div id="doing" class="board-col">
+        <div id="Doing" class="board-col">
             <h3>Doing</h3>
-            <div data-bind="foreach: {data:doingTasks, afterRender:makeDraggable}">
+            <div data-bind="foreach: {data:tasks, afterRender:makeDraggable}">
+                <!-- ko if: $data.Status.toUpperCase()==='Doing'.toUpperCase() -->
                 @Html.Partial("_Card")
+                <!-- /ko -->
             </div>
         </div>
-        <div id="done" class="board-col">
+        <div id="Done" class="board-col">
             <h3>Done</h3>
-            <div data-bind="foreach: {data:doneTasks, afterRender:makeDraggable}">
+            <div data-bind="foreach: {data:tasks, afterRender:makeDraggable}">
+                 <!-- ko if: $data.Status.toUpperCase()==='done'.toUpperCase() -->
                 @Html.Partial("_Card")
+                <!-- /ko -->
             </div>
         </div>
     </div>
@@ -39,7 +45,7 @@
             $(".board-col").droppable({
                 hoverClass: "column-state-hover",
                 drop: function (event, ui) {
-                    ui.draggable.children('input').val(this.id).change();
+                    ui.draggable.find('input').val(this.id).change();
                     ui.draggable.submit();
                 }
             });

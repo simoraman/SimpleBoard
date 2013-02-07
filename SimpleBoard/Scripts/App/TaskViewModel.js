@@ -1,33 +1,24 @@
 ﻿function taskViewModel() {
     var self = this;
 
-    self.todoTasks = ko.observableArray([]);
-    self.doingTasks = ko.observableArray([]);
-    self.doneTasks = ko.observableArray([]);
+    self.tasks = ko.observableArray([]);
 
     self.url = "http://localhost:11188/api";
 
     self.load = function () {
-        loadByStatus("ToDo", self.todoTasks);
-        loadByStatus("Doing", self.doingTasks);
-        loadByStatus("Done", self.doneTasks);
-    }
-    
-    loadByStatus = function (status, list) {
-
         $.ajax({
-            url: self.url + "/tasks/status/"+status,
+            url: self.url + "/tasks/",
             dataType: 'json',
             success: function (result) {
-                ko.utils.arrayPushAll(list, result);
-                list.valueHasMutated();
+                ko.utils.arrayPushAll(self.tasks, result);
+                self.tasks.valueHasMutated();
             },
             error: function (request, textStatus, errorThrown) {
                 alert(textStatus);
             }
         });
     }
-
+    
     self.updateItem = function (formData) {
         var putData = ko.mapping.toJSON(formData)
         $.ajax({
@@ -41,17 +32,16 @@
         });
     }
     self.Delete = function (data) {
-        self.doingTasks.remove(data);
-        //        $.ajax({
-        //            url: self.url + '/tasks/' + data.Id,
-        //            contentType: 'application/json',
-        //            type: 'DELETE',
-        //            success: function () {
-        //                self.load();
-        //            },
-        //            error: function (request, textStatus, errorThrown) {
-        //                alert(textStatus);
-        //            }
-        //        });
+        self.tasks.remove(data);
+        $.ajax({
+            url: self.url + '/tasks/' + data.Id,
+            contentType: 'application/json',
+            type: 'DELETE',
+            success: function () {
+            },
+            error: function (request, textStatus, errorThrown) {
+                alert(textStatus);
+            }
+        });
     }
 };

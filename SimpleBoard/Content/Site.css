@@ -20,7 +20,7 @@ header, footer, nav, section {
 }
 #board
 {
-    width:950px;    
+    width:950px;
 }
 #board h3
 {
@@ -29,7 +29,10 @@ header, footer, nav, section {
 }
 #container
 {
-   
+}
+#controls
+{
+    clear:both;
 }
 .card
 {

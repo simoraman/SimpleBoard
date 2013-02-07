@@ -30,6 +30,15 @@
             </div>
         </div>
     </div>
+    
+</div>
+
+<div id="controls">
+    <a href='#' id='new-button'>New</a>
+    <div id="dialog-modal" style="display:none;" title="Task">
+        <textarea rows="5" cols="30"></textarea>
+        <button data-bind="click: newTask">Create</button>
+    </div>
 </div>
 
 @section Scripts {
@@ -48,6 +57,13 @@
                     ui.draggable.find('input').val(this.id).change();
                     ui.draggable.submit();
                 }
+            });
+
+            
+            $('#new-button').click(function () {
+                $('#dialog-modal').dialog({
+                    modal: true
+                });
             });
         });
 

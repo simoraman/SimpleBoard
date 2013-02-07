@@ -44,4 +44,8 @@
             }
         });
     }
+
+    self.newTask = function(data, event){
+        var v=data;
+    }
 };

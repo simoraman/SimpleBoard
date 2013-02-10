@@ -1,4 +1,4 @@
-﻿function taskViewModel() {
+﻿function tasksViewModel() {
     var self = this;
 
     self.tasks = ko.observableArray([]);
@@ -45,7 +45,9 @@
         });
     }
 
-    self.newTask = function(data, event){
-        var v=data;
-    }
+//    self.newTask = function (data) {
+//        var v = data;
+//        self.tasks.push(v);
+//        self.tasks.valueHasMutated();
+//    }
 };

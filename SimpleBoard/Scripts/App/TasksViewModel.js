@@ -3,11 +3,15 @@
 
     self.tasks = ko.observableArray([]);
 
-    self.url = "http://localhost:11188/api";
+    self.selectedTask = ko.observable({Description: "desc"});
+
+    self.setSelectedTask = function (item) {
+        self.selectedTask(item);
+    }
 
     self.load = function () {
         $.ajax({
-            url: self.url + "/tasks/",
+            url: backendUrl + "/tasks/",
             dataType: 'json',
             success: function (result) {
                 ko.utils.arrayPushAll(self.tasks, result);
@@ -22,7 +26,7 @@
     self.updateItem = function (formData) {
         var putData = ko.mapping.toJSON(formData)
         $.ajax({
-            url: self.url + '/tasks/' + formData.Id,
+            url: backendUrl + '/tasks/' + formData.Id,
             contentType: 'application/json',
             type: 'PUT',
             data: putData,
@@ -34,7 +38,7 @@
     self.Delete = function (data) {
         self.tasks.remove(data);
         $.ajax({
-            url: self.url + '/tasks/' + data.Id,
+            url: backendUrl + '/tasks/' + data.Id,
             contentType: 'application/json',
             type: 'DELETE',
             success: function () {
@@ -45,9 +49,18 @@
         });
     }
 
-//    self.newTask = function (data) {
-//        var v = data;
-//        self.tasks.push(v);
-//        self.tasks.valueHasMutated();
-//    }
+    self.create = function (item) {
+        var postData = ko.mapping.toJSON(item)
+
+        $.ajax({
+            url: backendUrl + '/tasks/',
+            contentType: 'application/json',
+            type: 'POST',
+            data: postData,
+            error: function (request, textStatus, errorThrown) {
+                alert(textStatus);
+            }
+        });
+    }
+
 };

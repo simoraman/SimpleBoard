@@ -12,11 +12,13 @@ header, footer, nav, section {
 .board-col
 {
     border-right:2px solid black;
-    border-top:2px solid black;
     float:left;
     height:400px;
-    width:300px;
-    
+    width:300px;  
+}
+.board-col:nth-child(3)
+{
+    border-right:none;
 }
 #board
 {

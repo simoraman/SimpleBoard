@@ -36,43 +36,19 @@
 <div id="controls">
     <a href='#' id='new-button'>New</a>
     <div id="dialog-modal" style="display:none;" title="Task">
-        <textarea rows="5" cols="30" data-bind="value: Description"></textarea>
+        <textarea rows="5" cols="30" data-bind="value: selectedTask().Description"></textarea>
     </div>
 </div>
 
 @section Scripts {
     <script src="~/Scripts/App/tasksViewModel.js" type="text/javascript"></script>
     <script type="text/javascript">
-        
-        function taskViewModel() {
-            var self = this;
-            self.Description = ko.observable("");
-            self.Status = "ToDo";
-
-            self.create = function (item) {
-                var postData = ko.mapping.toJSON(item)
-                self.url = "http://localhost:11188/api";
-                $.ajax({
-                    url: self.url + '/tasks/',
-                    contentType: 'application/json',
-                    type: 'POST',
-                    data: postData,
-                    error: function (request, textStatus, errorThrown) {
-                        alert(textStatus);
-                    }
-                });
-            }
-        };
-
+        var backendUrl = "http://localhost:11188/api";
         var viewModel;
-        var taskVM;
+
         $(function () {
             viewModel = new tasksViewModel();
-            ko.applyBindings(viewModel, $('#board').get(0));
-
-            taskVM = new taskViewModel();
-            ko.applyBindings(taskVM, $('#controls').get(0));
-
+            ko.applyBindings(viewModel);
             viewModel.load();
 
             $(".board-col").droppable({
@@ -83,27 +59,41 @@
                 }
             });
 
-
-            $('#new-button').click(function () {
-                $('#dialog-modal').dialog({
-                    modal: true,
-                    buttons: {
-                        Cancel: function () {
-                            $(this).dialog("close");
-                        },
-                        Create: function () {
-                            $(this).dialog("close");
-                            taskVM.create(taskVM);
-                        }
-                    }
-                });
-            });
         });
 
         function makeDraggable() {
             $('.item').draggable({ revert: "invalid" });
         }
 
-        
+        function editDialog() {
+            $('#dialog-modal').dialog({
+                modal: true,
+                buttons: {
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    },
+                    Update: function () {
+                        $(this).dialog("close");
+                        viewModel.updateItem(viewModel.selectedTask());
+                    }
+                }
+            });
+        }
+
+        function newDialog() {
+            $('#dialog-modal').dialog({
+                modal: true,
+                buttons: {
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    },
+                    Create: function () {
+                        $(this).dialog("close");
+                        viewModel.create(viewModel.selectedTask());
+                    }
+                }
+            });
+        }
+
     </script>
 }

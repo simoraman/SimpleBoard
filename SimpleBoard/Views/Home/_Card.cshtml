@@ -8,7 +8,7 @@
         <div class="card-controls">
             <a class="card-control-button" href="#" data-bind="click: $parent.Delete">Delete</a>
             
-            <a class="card-control-button" href="#" data-bind="click: $parent.Edit">Edit</a>
+            <a class="card-control-button" href="#" data-bind="click: function(data, event) {$parent.setSelectedTask(data);editDialog();}">Edit</a>
         </div>
     </div>
 </form>

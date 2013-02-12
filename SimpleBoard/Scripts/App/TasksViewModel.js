@@ -3,7 +3,7 @@
 
     self.tasks = ko.observableArray([]);
 
-    self.selectedTask = ko.observable({Description: "desc"});
+    self.selectedTask = ko.observable({Description: "", Status:"ToDo"});
 
     self.setSelectedTask = function (item) {
         self.selectedTask(item);
@@ -57,6 +57,8 @@
             contentType: 'application/json',
             type: 'POST',
             data: postData,
+            success: function () {
+            },
             error: function (request, textStatus, errorThrown) {
                 alert(textStatus);
             }

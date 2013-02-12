@@ -102,6 +102,14 @@ namespace SimpleBoard.Service.Tests
             Assert.That(result.Status,Is.EqualTo("Done"));
         }
 
+        [Test]
+        public void SavingReturnsObjectWithId()
+        {
+            Task task = new Task { Description = "kuvaus" };
+            task=taskRepository.Save(task);
+            Assert.That(task.Id, Is.Not.Null);
+        }
+
         [TearDown]
         public void Teardown()
         {

@@ -60,6 +60,23 @@ namespace SimpleBoard.Service.Tests
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
 
             taskRepoMock.Verify(x=>x.Save(It.Is<Task>(t=>t.Description=="todo")));
+
+        }
+
+        [Test]
+        public void PostingNewTaskReturnsTask()
+        {
+            taskRepoMock.Setup(x => x.Save(It.IsAny<Task>())).Returns(new Task { Id=1, Description = "taski" });
+
+            var response = browser.Post("/tasks/", with =>
+            {
+                with.Body(JsonConvert.SerializeObject(new Task()));
+                with.Header("content-type", "application/json");
+            });
+
+            dynamic json = JObject.Parse(response.Body.AsString());
+            
+            Assert.That((int)json.Id, Is.EqualTo(1));
         }
 
         [Test]

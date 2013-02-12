@@ -195,7 +195,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\App\TaskViewModel.js" />
+    <Content Include="Scripts\App\TasksViewModel.js" />
     <Content Include="Scripts\jquery-1.9.0-vsdoc.js" />
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />

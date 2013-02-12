@@ -11,7 +11,7 @@ namespace SimpleBoard.Service
     public interface ITaskRepository
     {
         IEnumerable<Task> Find();
-        void Save(Task task);
+        Task Save(Task task);
         IEnumerable<Task> FindByStatus(string status);
         void Update(Task updatedTask);
         void Delete(int taskId);
@@ -32,10 +32,11 @@ namespace SimpleBoard.Service
             return session.Query<Task>().ToList();
         }
 
-        public void Save(Task task)
+        public Task Save(Task task)
         {
             session.Store(task);
             session.SaveChanges();
+            return task;
         }
 
         public IEnumerable<Task> FindByStatus(string status)

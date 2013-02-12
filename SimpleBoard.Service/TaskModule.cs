@@ -18,8 +18,8 @@ namespace SimpleBoard.Service
             Post["/"] = task =>
                             {
                                 var newTask = this.Bind<Task>();
-                                taskRepository.Save(newTask);
-                                return HttpStatusCode.Created;
+                                var t = taskRepository.Save(newTask);
+                                return Response.AsJson(t).WithStatusCode(HttpStatusCode.Created);
                             };
 
             Put["/{Id}"] = task =>

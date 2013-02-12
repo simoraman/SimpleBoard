@@ -57,7 +57,8 @@
             contentType: 'application/json',
             type: 'POST',
             data: postData,
-            success: function () {
+            success: function (result) {
+                self.tasks.push(result);
             },
             error: function (request, textStatus, errorThrown) {
                 alert(textStatus);
